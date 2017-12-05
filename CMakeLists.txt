@@ -10,7 +10,7 @@ add_executable(helloworld_cli main.cpp)
 
 add_library(helloworld lib.cpp)
 
-add_library(test_version test.cpp)
+add_executable(test_version test.cpp)
 
 set_target_properties(
 	helloworld_cli helloworld test_version PROPERTIES
