@@ -19,12 +19,10 @@ set_target_properties(
 	COMPILE_OPTIONS -Wpedantic -Wall -Wextra
 )
 
-set_target_properties(
-	test_version PROPERTIES
-	COMPILE_DEFENITIONS BOOST_TEST_DYN_LINK
-	INCLUDE_DIRECTORIES ${Boost_INCLUDE_DIR}
+target_compile_definitions(
+	test_version
+	PRIVATE "BOOST_TEST_DYN_LINK=1"
 )
-
 target_link_libraries(
 	helloworld_cli
 	helloworld
@@ -32,21 +30,21 @@ target_link_libraries(
 
 target_link_libraries(
 	test_version
-	${Boost_LIBRARES}
+	${Boost_UNIT_TEST_FRAMEWORK_LIBRARY}
 	helloworld
 )
 
-enable_testing()
-add_test(test_version test_version)
-
 install(TARGETS helloworld_cli RUNTIME DESTINATION bin)
 
-set(CPAC_GENERAOR DEB)
+set(CPACK_GENERATOR "DEB")
 
-set(CPACK_PAKGE_VERSION_MAJOR "${PAKGE_VERSION_MAJOR}")
-set(CPACK_PAKGE_VERSION_MINOR "${PAKGE_VERSION_MINOR}")
-set(CPACK_PAKGE_VERSION_PATCH "${PAKGE_VERSION_PATCH}")
-set(CPAK_PACKAGE_CONTACT lvbnu@yandex.ru)
-
+set(CPACK_PACKAGE_VERSION_MAJOR "${PROJECT_VERSION_MAJOR}")
+set(CPACK_PACKAGE_VERSION_MINOR "${PROJECT_VERSION_MINOR}")
+set(CPACK_PACKAGE_VERSION_PATCH "${PROJECT_VERSION_PATCH}")
+set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Rejdok")
+set(CPAK_PACKAGE_CONTACT "lvbnu@yandex.ru")
 include(CPack)
 
+
+enable_testing()
+add_test(test_version test_version)

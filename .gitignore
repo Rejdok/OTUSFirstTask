@@ -35,6 +35,12 @@
 *.cmake
 CMakeFiles/
 CMakeCache.txt
+_CPAck_Packages/
+Testing/
+helloworld-0.*
+helloworld_cli
+install_manifest.txt
+test_version
 #generate automatically
 version.h
 Makefile
